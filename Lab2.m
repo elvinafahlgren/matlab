@@ -27,17 +27,22 @@ s
 omkrets=polylen_fun([0 1/2],[0 sqrt(3)/2]) % funktion i annan fil
 
 %% Uppgift 4
+%säkert fel, men funkar:)
 subplot(1,2,1)
+axis([0 1 0 1]), hold on
+[x,y]=ginput(1);
+plot(x,y,'-o')
 while 1
-    [x,y,knapp] = ginput(1);
+    [xi,yi,knapp] = ginput(1);
     if knapp ~=1
         break
     end
+    x=[x; xi]; y=[y; yi];
+    plot(x(end-1:end),y(end-1:end),'o-')
 end
-x=[x; x(1)]; 
-y=[y; y(1)];
-plot(x,y,'-o')
-axis([0 1 0 1])
+hold off
+x=[x; x(1)]; y=[y; y(1)];
+
 subplot(1,2,2)
 fill(x,y,'g')
 axis([0 1 0 1])
